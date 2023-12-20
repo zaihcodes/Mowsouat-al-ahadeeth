@@ -21,8 +21,8 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
     final failureOrCategories =
         await allCategoriesUsecase.getAllCategories(lang: event.lang);
 
-    failureOrCategories.fold(
-        (failure) => emit(_mapFailureToState(failure)), (categories) => null);
+    failureOrCategories.fold((failure) => emit(_mapFailureToState(failure)),
+        (categories) => emit(CategoryLoaded(categories: categories)));
   }
 
   CategoryState _mapFailureToState(Failure failure) {
