@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:hadeeth/core/error/exceptions.dart';
 import 'package:hadeeth/src/category/data/models/category_detail_model.dart';
 import 'package:hadeeth/src/category/data/models/category_model.dart';
@@ -26,7 +27,8 @@ class CategoryRemoteDataSourceImpl implements CategoryRemoteDataSource {
     final response = await client.get(url);
 
     if (response.statusCode == 200) {
-      final List<dynamic> data = json.decode(response.body)['data'];
+      debugPrint('response.body: ${response.body}');
+      final List<dynamic> data = json.decode(response.body);
       return data.map((json) => CategoryModel.fromJson(json)).toList();
     } else {
       throw ServerException(
@@ -45,7 +47,7 @@ class CategoryRemoteDataSourceImpl implements CategoryRemoteDataSource {
     final response = await client.get(url);
 
     if (response.statusCode == 200) {
-      final data = json.decode(response.body)['data'];
+      final data = json.decode(response.body);
       return data.map((json) => CategoryDetailModel.fromJson(json)).toList();
     } else {
       throw ServerException(
