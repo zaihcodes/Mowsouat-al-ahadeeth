@@ -45,10 +45,12 @@ class CategoryRemoteDataSourceImpl implements CategoryRemoteDataSource {
     final url = Uri.parse(
         '$baseUrl/api/v1/hadeeths/list/?language=$lang&category_id=$categoryId&page=$page&per_page=$perPage');
     final response = await client.get(url);
-
+    debugPrint('Category Detail response: ${response.body}');
     if (response.statusCode == 200) {
-      final data = json.decode(response.body);
-      return data.map((json) => CategoryDetailModel.fromJson(json)).toList();
+      Map<String, dynamic> data = json.decode(response.body);
+      debugPrint('Category Detail data: $data');
+      CategoryDetailModel categoryDetail = CategoryDetailModel.fromJson(data);
+      return categoryDetail;
     } else {
       throw ServerException(
           'Failed to load category Hadeeths: ${response.reasonPhrase}');

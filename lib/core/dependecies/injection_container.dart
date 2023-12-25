@@ -14,7 +14,7 @@ final sl = GetIt.instance;
 
 Future<void> init() async {
   // Core
-  sl.registerLazySingleton(() => NetworkInfoImpl(sl()));
+  sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));
   sl.registerLazySingleton(() => InternetConnectionChecker());
   sl.registerLazySingleton(() => http.Client());
   // Categories & CategoryDetail

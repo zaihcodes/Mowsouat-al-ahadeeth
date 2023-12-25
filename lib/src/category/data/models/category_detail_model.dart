@@ -6,10 +6,12 @@ class CategoryDetailModel extends CategoryDetail {
   CategoryDetailModel({required super.data, required super.meta});
 
   factory CategoryDetailModel.fromJson(Map<String, dynamic> json) {
+    var dataList = json['data'] as List;
+    List<CategoryHadeethModel> categoryHadeethList =
+        dataList.map((e) => CategoryHadeethModel.fromJson(e)).toList();
+
     return CategoryDetailModel(
-      data: (json['data'] as List)
-          .map((item) => CategoryHadeethModel.fromJson(item))
-          .toList(),
+      data: categoryHadeethList,
       meta: CategoryMetaModel.fromJson(json['meta']),
     );
   }
