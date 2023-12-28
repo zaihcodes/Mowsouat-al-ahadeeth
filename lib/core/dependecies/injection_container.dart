@@ -7,6 +7,11 @@ import 'package:hadeeth/src/category/domain/usecases/all_categories_usecase.dart
 import 'package:hadeeth/src/category/domain/usecases/category_detail_usecase.dart';
 import 'package:hadeeth/src/category/presentation/blocs/category/category_bloc.dart';
 import 'package:hadeeth/src/category/presentation/blocs/category_detail/category_detail_bloc.dart';
+import 'package:hadeeth/src/hadeeth/data/data%20source/hadeeth_data_source.dart';
+import 'package:hadeeth/src/hadeeth/data/repository/hadeeth_repository_impl.dart';
+import 'package:hadeeth/src/hadeeth/domain/repository/hadeeth_repository.dart';
+import 'package:hadeeth/src/hadeeth/domain/usecases/hadeeth_usecase.dart';
+import 'package:hadeeth/src/hadeeth/presentation/blocs/hadeeth/hadeeth_bloc.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:http/http.dart' as http;
 
@@ -17,6 +22,7 @@ Future<void> init() async {
   sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));
   sl.registerLazySingleton(() => InternetConnectionChecker());
   sl.registerLazySingleton(() => http.Client());
+
   // Categories & CategoryDetail
   // Bloc
   sl.registerFactory(() => CategoryBloc(allCategoriesUsecase: sl()));
@@ -30,4 +36,16 @@ Future<void> init() async {
   // Data Source
   sl.registerLazySingleton<CategoryRemoteDataSource>(
       () => CategoryRemoteDataSourceImpl(client: sl()));
+
+  // Hadeeth
+  // Bloc
+  sl.registerFactory(() => HadeethBloc(hadeethUsecase: sl()));
+  // Usecase
+  sl.registerLazySingleton(() => HadeethUsecase(hadeethRepository: sl()));
+  // Repository
+  sl.registerLazySingleton<HadeethRepository>(
+      () => HadeethRepositoryImpl(hadeethDataSource: sl()));
+  // Datasource
+  sl.registerLazySingleton<HadeethDataSource>(
+      () => HadeethDataSourceImpl(client: sl()));
 }

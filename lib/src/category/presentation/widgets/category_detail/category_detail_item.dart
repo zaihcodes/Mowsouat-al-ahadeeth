@@ -49,7 +49,7 @@ class CategoryDetailItem extends StatelessWidget {
               child: Text(
                 categoryHadeeth.title,
                 textAlign: TextAlign.end,
-                style: GoogleFonts.changa().copyWith(),
+                style: GoogleFonts.changa(),
               ),
             ),
           ],
