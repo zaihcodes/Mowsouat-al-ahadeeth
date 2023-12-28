@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hadeeth/src/hadeeth/presentation/blocs/hadeeth/hadeeth_bloc.dart';
+import 'package:hadeeth/src/hadeeth/presentation/widgets/hadeeth_widget.dart';
 
 class HadeethScreen extends StatelessWidget {
   const HadeethScreen({super.key});
@@ -19,15 +20,14 @@ class HadeethScreen extends StatelessWidget {
                 color: Colors.black,
               )));
             } else if (state is HadeethLoaded) {
-              return Center(
-                child: Text(
-                  state.hadeeth.hadeeth,
-                  style: GoogleFonts.changa(),
-                ),
-              );
+              return HadeethWidget(hadeeth: state.hadeeth);
             } else if (state is HadeethError) {
               return Center(
                 child: Text('Error: ${state.message}'),
+              );
+            } else if (state is HadeethOffline) {
+              return const Center(
+                child: Text('No internet!'),
               );
             } else {
               return const Center(

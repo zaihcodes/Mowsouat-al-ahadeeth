@@ -6,7 +6,6 @@ import 'package:hadeeth/src/category/presentation/blocs/category/category_bloc.d
 import 'package:hadeeth/src/category/presentation/blocs/category_detail/category_detail_bloc.dart';
 import 'package:hadeeth/src/category/presentation/screens/categories_screen.dart';
 import 'package:hadeeth/src/hadeeth/presentation/blocs/hadeeth/hadeeth_bloc.dart';
-import 'package:hadeeth/src/hadeeth/presentation/screens/hadeeth_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,8 +28,7 @@ class MainApp extends StatelessWidget {
           create: (context) => di.sl<CategoryDetailBloc>(),
         ),
         BlocProvider(
-          create: (context) => di.sl<HadeethBloc>()
-            ..add(const GetHadeeth(lang: 'ar', hadeethId: '2962')),
+          create: (context) => di.sl<HadeethBloc>(),
         ),
       ],
       child: MaterialApp(
@@ -41,7 +39,7 @@ class MainApp extends StatelessWidget {
         ],
         theme: MyTheme.lightTheme,
         darkTheme: MyTheme.darkTheme,
-        home: const HadeethScreen(),
+        home: const CategoriesScreen(),
       ),
     );
   }

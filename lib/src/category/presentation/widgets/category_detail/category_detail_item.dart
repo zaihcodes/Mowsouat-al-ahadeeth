@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hadeeth/src/category/domain/entities/category_hadeeth.dart';
+import 'package:hadeeth/src/hadeeth/presentation/blocs/hadeeth/hadeeth_bloc.dart';
+import 'package:hadeeth/src/hadeeth/presentation/screens/hadeeth_screen.dart';
 
 class CategoryDetailItem extends StatelessWidget {
   const CategoryDetailItem({
@@ -14,13 +17,11 @@ class CategoryDetailItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // context.read<CategoryDetailBloc>().add(GetCategoryDetail(
-        //     lang: 'ar', categoryId: category.id, page: '1', perPage: '40'));
-        // Navigator.push(
-        //     context,
-        //     MaterialPageRoute(
-        //         builder: (context) =>
-        //             CategoryDetailScreen(categoryId: category.id)));
+        context
+            .read<HadeethBloc>()
+            .add(GetHadeeth(lang: 'ar', hadeethId: categoryHadeeth.id));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const HadeethScreen()));
       },
       child: Container(
         padding: const EdgeInsets.all(20),
