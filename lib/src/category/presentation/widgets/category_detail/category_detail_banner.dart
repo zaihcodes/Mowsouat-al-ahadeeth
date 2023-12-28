@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class CategoriesBanner extends StatelessWidget {
-  const CategoriesBanner({
-    super.key,
-  });
+class CategoryDetailBanner extends StatelessWidget {
+  const CategoryDetailBanner({super.key, required this.categoryTitle});
+  final String categoryTitle;
 
   @override
   Widget build(BuildContext context) {
@@ -17,15 +16,16 @@ class CategoriesBanner extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Text(
-                'موسوعة',
+                'الأحاديث النبوية',
                 style: GoogleFonts.almarai().copyWith(fontSize: 18),
               ),
               const SizedBox(
                 height: 5,
               ),
               Text(
-                'الأحاديث النبوية',
-                style: GoogleFonts.almarai().copyWith(fontSize: 35),
+                categoryTitle,
+                style: GoogleFonts.almarai()
+                    .copyWith(fontSize: 35, overflow: TextOverflow.ellipsis),
               ),
             ]),
       ),

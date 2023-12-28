@@ -1,31 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hadeeth/src/category/domain/entities/category.dart';
-import 'package:hadeeth/src/category/presentation/blocs/category_detail/category_detail_bloc.dart';
-import 'package:hadeeth/src/category/presentation/screens/category_detail_screen.dart';
+import 'package:hadeeth/src/category/domain/entities/category_hadeeth.dart';
 
-class SingleCategory extends StatelessWidget {
-  const SingleCategory({
+class CategoryDetailItem extends StatelessWidget {
+  const CategoryDetailItem({
     super.key,
-    required this.category,
+    required this.categoryHadeeth,
   });
 
-  final Category category;
+  final CategoryHadeeth categoryHadeeth;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.read<CategoryDetailBloc>().add(GetCategoryDetail(
-            lang: 'ar', categoryId: category.id, page: '1', perPage: '80'));
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => CategoryDetailScreen(
-                      categoryId: category.id,
-                      categoryTitle: category.title,
-                    )));
+        // context.read<CategoryDetailBloc>().add(GetCategoryDetail(
+        //     lang: 'ar', categoryId: category.id, page: '1', perPage: '40'));
+        // Navigator.push(
+        //     context,
+        //     MaterialPageRoute(
+        //         builder: (context) =>
+        //             CategoryDetailScreen(categoryId: category.id)));
       },
       child: Container(
         padding: const EdgeInsets.all(20),
@@ -47,11 +42,14 @@ class SingleCategory extends StatelessWidget {
                   Icons.arrow_back_ios_new_outlined,
                   size: 14,
                 )),
+            const SizedBox(
+              width: 10,
+            ),
             Expanded(
               child: Text(
-                category.title,
+                categoryHadeeth.title,
                 textAlign: TextAlign.end,
-                style: GoogleFonts.changa(),
+                style: GoogleFonts.changa().copyWith(),
               ),
             ),
           ],

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hadeeth/core/dependecies/injection_container.dart' as di;
 import 'package:hadeeth/core/theme/app_theme.dart';
 import 'package:hadeeth/src/category/presentation/blocs/category/category_bloc.dart';
+import 'package:hadeeth/src/category/presentation/blocs/category_detail/category_detail_bloc.dart';
 import 'package:hadeeth/src/category/presentation/screens/categories_screen.dart';
 
 void main() async {
@@ -19,8 +20,12 @@ class MainApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-            create: (context) =>
-                di.sl<CategoryBloc>()..add(GetAllCategories(lang: 'ar')))
+          create: (context) =>
+              di.sl<CategoryBloc>()..add(GetAllCategories(lang: 'ar')),
+        ),
+        BlocProvider(
+          create: (context) => di.sl<CategoryDetailBloc>(),
+        ),
       ],
       child: MaterialApp(
         locale: const Locale('ar'),
