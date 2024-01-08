@@ -13,6 +13,7 @@ class CategoriesScreen extends StatelessWidget {
       backgroundColor: Theme.of(context).colorScheme.background,
       body: BlocBuilder<CategoryBloc, CategoryState>(
         builder: (context, state) {
+          debugPrint('State is ${state.runtimeType}');
           if (state is CategoryLoading) {
             return const SizedBox(
                 child: Center(child: CircularProgressIndicator()));

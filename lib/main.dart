@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hadeeth/core/dependecies/injection_container.dart' as di;
 import 'package:hadeeth/core/theme/app_theme.dart';
+import 'package:hadeeth/core/utils/spalsh_screen.dart';
 import 'package:hadeeth/src/category/presentation/blocs/category/category_bloc.dart';
 import 'package:hadeeth/src/category/presentation/blocs/category_detail/category_detail_bloc.dart';
 import 'package:hadeeth/src/category/presentation/screens/categories_screen.dart';
@@ -22,7 +23,7 @@ class MainApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) =>
-              di.sl<CategoryBloc>()..add(GetAllCategories(lang: 'ar')),
+              di.sl<CategoryBloc>(), //..add(GetAllCategories(lang: 'ar')),
         ),
         BlocProvider(
           create: (context) => di.sl<CategoryDetailBloc>(),
@@ -32,14 +33,15 @@ class MainApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         locale: const Locale('ar'),
-        supportedLocales: const [
-          Locale('ar'),
-          Locale('en'),
-        ],
+        // supportedLocales: const [
+        //   Locale('ar'),
+        //   Locale('en'),
+        // ],
         theme: MyTheme.lightTheme,
         darkTheme: MyTheme.darkTheme,
-        home: const CategoriesScreen(),
+        home: const SplashScreen(),
       ),
     );
   }
