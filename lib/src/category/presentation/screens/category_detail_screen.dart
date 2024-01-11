@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hadeeth/core/utils/no_internet_screen.dart';
 import 'package:hadeeth/src/category/presentation/blocs/category_detail/category_detail_bloc.dart';
 import 'package:hadeeth/src/category/presentation/widgets/category_detail/category_detail_banner.dart';
 import 'package:hadeeth/src/category/presentation/widgets/category_detail/category_detail_list.dart';
@@ -40,6 +41,8 @@ class CategoryDetailScreen extends StatelessWidget {
             return Center(
               child: Text('Error: ${state.message}'),
             );
+          } else if (state is CategoryDetailOffline) {
+            return const NoInternetScreen();
           } else {
             return const Center(
               child: Text('Unexpected state'),

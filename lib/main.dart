@@ -42,6 +42,7 @@ class MainApp extends StatelessWidget {
         theme: MyTheme.lightTheme,
         darkTheme: MyTheme.darkTheme,
         home: const SplashScreen(),
+        // home: const CategoriesScreen(),
       ),
     );
   }
