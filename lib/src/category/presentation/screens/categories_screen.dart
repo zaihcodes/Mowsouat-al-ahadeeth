@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hadeeth/core/utils/no_internet_screen.dart';
+import 'package:hadeeth/core/utils/widgets/banner_widget.dart';
 import 'package:hadeeth/src/category/presentation/blocs/category/category_bloc.dart';
 import 'package:hadeeth/src/category/presentation/widgets/categories/categories_banner.dart';
 import 'package:hadeeth/src/category/presentation/widgets/categories/categories_list.dart';
@@ -15,7 +16,7 @@ class CategoriesScreen extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          const CategoriesBanner(),
+          const BannerWidget(title: 'الأحاديث النبوية', subTitl: 'موسوعة'),
           Expanded(
             child: Container(
               padding: const EdgeInsets.only(top: 20, left: 20, right: 20),

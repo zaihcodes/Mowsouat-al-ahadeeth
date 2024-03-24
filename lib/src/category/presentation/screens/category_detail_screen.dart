@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hadeeth/core/utils/no_internet_screen.dart';
+import 'package:hadeeth/core/utils/widgets/banner_widget.dart';
 import 'package:hadeeth/src/category/presentation/blocs/category_detail/category_detail_bloc.dart';
 import 'package:hadeeth/src/category/presentation/widgets/category_detail/category_detail_banner.dart';
 import 'package:hadeeth/src/category/presentation/widgets/category_detail/category_detail_list.dart';
@@ -16,9 +17,12 @@ class CategoryDetailScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          CategoryDetailBanner(
-            categoryTitle: categoryTitle,
+          BannerWidget(
+            title: categoryTitle,
+            subTitl: 'الأحاديث النبوية',
+            hasBacNavigator: true,
           ),
           Expanded(
             child: Container(
