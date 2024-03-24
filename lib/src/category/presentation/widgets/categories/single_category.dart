@@ -35,6 +35,16 @@ class SingleCategory extends StatelessWidget {
             borderRadius: BorderRadius.circular(10)),
         child: Row(
           children: [
+            Expanded(
+              child: Text(
+                category.title,
+                textAlign: TextAlign.end,
+                style: GoogleFonts.changa(),
+              ),
+            ),
+            const SizedBox(
+              width: 50,
+            ),
             Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
@@ -44,16 +54,9 @@ class SingleCategory extends StatelessWidget {
                       width: 1),
                 ),
                 child: const Icon(
-                  Icons.arrow_back_ios_new_outlined,
+                  Icons.arrow_forward,
                   size: 14,
                 )),
-            Expanded(
-              child: Text(
-                category.title,
-                textAlign: TextAlign.end,
-                style: GoogleFonts.changa(),
-              ),
-            ),
           ],
         ),
         // Add more category information as needed

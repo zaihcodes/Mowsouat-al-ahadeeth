@@ -7,18 +7,12 @@ class CategoriesList extends StatelessWidget {
   final List<Category> categories;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
-      decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.secondaryContainer,
-          borderRadius: const BorderRadius.vertical(top: Radius.circular(40))),
-      child: ListView.builder(
-        itemCount: categories.length,
-        itemBuilder: (context, index) {
-          final category = categories[index];
-          return SingleCategory(category: category);
-        },
-      ),
+    return ListView.builder(
+      itemCount: categories.length,
+      itemBuilder: (context, index) {
+        final category = categories[index];
+        return SingleCategory(category: category);
+      },
     );
   }
 }

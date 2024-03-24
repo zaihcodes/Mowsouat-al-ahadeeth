@@ -12,40 +12,47 @@ class CategoriesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
-      body: BlocBuilder<CategoryBloc, CategoryState>(
-        builder: (context, state) {
-          debugPrint('State is ${state.runtimeType}');
-          if (state is CategoryLoading) {
-            return const SizedBox(
-                child: Center(child: CircularProgressIndicator()));
-          } else if (state is CategoryLoaded) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                const CategoriesBanner(),
-                Expanded(
-                  child: CategoriesList(
-                    categories: state.categories,
-                  ),
-                )
-              ],
-            );
-          } else if (state is CategoryEmptyData) {
-            return const Center(
-              child: Text('No categories available.'),
-            );
-          } else if (state is CategoryError) {
-            return Center(
-              child: Text('Error: ${state.message}'),
-            );
-          } else if (state is CategoryOffline) {
-            return const NoInternetScreen();
-          } else {
-            return const Center(
-              child: Text('Unexpected state'),
-            );
-          }
-        },
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          const CategoriesBanner(),
+          Expanded(
+            child: Container(
+              padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
+              decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.secondaryContainer,
+                  borderRadius:
+                      const BorderRadius.vertical(top: Radius.circular(40))),
+              child: BlocBuilder<CategoryBloc, CategoryState>(
+                builder: (context, state) {
+                  debugPrint('State is ${state.runtimeType}');
+                  if (state is CategoryLoading) {
+                    return const SizedBox(
+                        child: Center(child: CircularProgressIndicator()));
+                  } else if (state is CategoryLoaded) {
+                    return CategoriesList(
+                      categories: state.categories,
+                    );
+                  } else if (state is CategoryEmptyData) {
+                    return const Center(
+                      child: Text('No categories available.'),
+                    );
+                  } else if (state is CategoryError) {
+                    return Center(
+                      child: Text('Error: ${state.message}'),
+                    );
+                  } else if (state is CategoryOffline) {
+                    return const NoInternetScreen();
+                  } else {
+                    return const Center(
+                      child: Text('Unexpected state'),
+                    );
+                  }
+                },
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

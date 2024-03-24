@@ -15,40 +15,46 @@ class CategoryDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
-      body: BlocBuilder<CategoryDetailBloc, CategoryDetailState>(
-        builder: (context, state) {
-          if (state is CategoryDetailLoading) {
-            return const SizedBox(
-                child: Center(child: CircularProgressIndicator()));
-          } else if (state is CategoryDetailLoaded) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                CategoryDetailBanner(
-                  categoryTitle: categoryTitle,
-                ),
-                Expanded(
-                  child: CategoryDetailList(
-                      categoriesDetail: state.categoriesDetail),
-                )
-              ],
-            );
-          } else if (state is CategoryDetailEmptyData) {
-            return const Center(
-              child: Text('No categories available.'),
-            );
-          } else if (state is CategoryDetailError) {
-            return Center(
-              child: Text('Error: ${state.message}'),
-            );
-          } else if (state is CategoryDetailOffline) {
-            return const NoInternetScreen();
-          } else {
-            return const Center(
-              child: Text('Unexpected state'),
-            );
-          }
-        },
+      body: Column(
+        children: [
+          CategoryDetailBanner(
+            categoryTitle: categoryTitle,
+          ),
+          Expanded(
+            child: Container(
+              padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
+              decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.secondaryContainer,
+                  borderRadius:
+                      const BorderRadius.vertical(top: Radius.circular(40))),
+              child: BlocBuilder<CategoryDetailBloc, CategoryDetailState>(
+                builder: (context, state) {
+                  if (state is CategoryDetailLoading) {
+                    return const SizedBox(
+                        child: Center(child: CircularProgressIndicator()));
+                  } else if (state is CategoryDetailLoaded) {
+                    return CategoryDetailList(
+                        categoriesDetail: state.categoriesDetail);
+                  } else if (state is CategoryDetailEmptyData) {
+                    return const Center(
+                      child: Text('No categories available.'),
+                    );
+                  } else if (state is CategoryDetailError) {
+                    return Center(
+                      child: Text('Error: ${state.message}'),
+                    );
+                  } else if (state is CategoryDetailOffline) {
+                    return const NoInternetScreen();
+                  } else {
+                    return const Center(
+                      child: Text('Unexpected state'),
+                    );
+                  }
+                },
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
