@@ -62,9 +62,27 @@ class HadeethWidget extends StatelessWidget {
             left: 30,
             child: InkWell(
               onTap: () => Navigator.pop(context),
-              child: const Icon(
-                Icons.arrow_back,
-                size: 18,
+              child: Container(
+                height: 30,
+                width: 30,
+                decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.primaryContainer,
+                    borderRadius: BorderRadius.circular(8),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Theme.of(context)
+                            .colorScheme
+                            .shadow
+                            .withOpacity(0.2),
+                        offset: const Offset(0, 2),
+                        blurRadius: 5,
+                      )
+                    ]),
+                child: Icon(
+                  Icons.arrow_back,
+                  size: 18,
+                  color: Theme.of(context).colorScheme.onPrimaryContainer,
+                ),
               ),
             )),
       ],
