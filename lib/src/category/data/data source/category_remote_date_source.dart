@@ -34,6 +34,8 @@ class CategoryRemoteDataSourceImpl implements CategoryRemoteDataSource {
       throw ServerException(
           'Failed to load categories: ${response.reasonPhrase}');
     }
+
+    // return staticBody.map((json) => CategoryModel.fromJson(json)).toList();
   }
 
   @override
@@ -55,3 +57,43 @@ class CategoryRemoteDataSourceImpl implements CategoryRemoteDataSource {
     }
   }
 }
+
+const List<Map<String, dynamic>> staticBody = [
+  {
+    "id": "1",
+    "title": "القرآن الكريم وعلومه",
+    "hadeeths_count": "197",
+    "parent_id": null
+  },
+  {
+    "id": "2",
+    "title": "الحديث وعلومه",
+    "hadeeths_count": "15",
+    "parent_id": null
+  },
+  {"id": "3", "title": "العقيدة", "hadeeths_count": "711", "parent_id": null},
+  {
+    "id": "4",
+    "title": "الفقه وأصوله",
+    "hadeeths_count": "1807",
+    "parent_id": null
+  },
+  {
+    "id": "5",
+    "title": "الفضائل والآداب",
+    "hadeeths_count": "1008",
+    "parent_id": null
+  },
+  {
+    "id": "6",
+    "title": "الدعوة والحسبة",
+    "hadeeths_count": "137",
+    "parent_id": null
+  },
+  {
+    "id": "7",
+    "title": "السيرة والتاريخ",
+    "hadeeths_count": "353",
+    "parent_id": null
+  }
+];

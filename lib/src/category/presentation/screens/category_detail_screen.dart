@@ -15,7 +15,7 @@ class CategoryDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
@@ -28,7 +28,7 @@ class CategoryDetailScreen extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
               decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.secondaryContainer,
+                  // color: Theme.of(context).colorScheme.secondaryContainer,
                   borderRadius:
                       const BorderRadius.vertical(top: Radius.circular(40))),
               child: BlocBuilder<CategoryDetailBloc, CategoryDetailState>(

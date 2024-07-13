@@ -31,10 +31,30 @@ class SingleCategory extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         margin: const EdgeInsets.only(bottom: 10),
         decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.background,
-            borderRadius: BorderRadius.circular(10)),
+          color: Theme.of(context).colorScheme.primaryFixedDim,
+          borderRadius: BorderRadius.circular(10),
+        ),
         child: Row(
           children: [
+            Container(
+              width: 60,
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.primaryContainer,
+                borderRadius: BorderRadius.circular(8),
+                boxShadow: [
+                  BoxShadow(
+                      color:
+                          Theme.of(context).colorScheme.shadow.withOpacity(0.2),
+                      spreadRadius: 3,
+                      blurRadius: 5,
+                      offset: const Offset(0, 2))
+                ],
+              ),
+              child: Center(
+                child: Text(category.hadeethsCount),
+              ),
+            ),
             Expanded(
               child: Text(
                 category.title,

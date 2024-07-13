@@ -27,8 +27,13 @@ class CategoryDetailItem extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         margin: const EdgeInsets.only(bottom: 10),
         decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.background,
-            borderRadius: BorderRadius.circular(10)),
+          // color: Theme.of(context).colorScheme.primaryFixedDim,
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(
+            width: 2,
+            color: Theme.of(context).colorScheme.primaryFixedDim,
+          ),
+        ),
         child: Row(
           children: [
             Expanded(
