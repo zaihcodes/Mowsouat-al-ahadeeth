@@ -6,13 +6,13 @@ class MyTheme {
     useMaterial3: true,
     brightness: Brightness.light,
     colorScheme: ColorScheme.fromSeed(
-        seedColor: const Color(0xFFA5D6A7), brightness: Brightness.light),
+        seedColor: const Color(0xFFd0f8e5), brightness: Brightness.light),
   );
 
   static ThemeData darkTheme = ThemeData(
     useMaterial3: true,
     brightness: Brightness.dark,
     colorScheme: ColorScheme.fromSeed(
-        seedColor: const Color(0xFFA5D6A7), brightness: Brightness.dark),
+        seedColor: const Color(0xFFd0f8e5), brightness: Brightness.dark),
   );
 }

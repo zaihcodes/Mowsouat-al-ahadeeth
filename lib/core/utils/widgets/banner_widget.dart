@@ -13,40 +13,16 @@ class BannerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Stack(
       children: [
-        hasBacNavigator
-            ? Positioned(
-                top: 40,
-                left: 30,
-                child: InkWell(
-                  onTap: () => Navigator.pop(context),
-                  child: Container(
-                    height: 30,
-                    width: 30,
-                    decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.secondaryContainer,
-                        borderRadius: BorderRadius.circular(8),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Theme.of(context)
-                                .colorScheme
-                                .shadow
-                                .withOpacity(0.2),
-                            offset: const Offset(2, 1),
-                            blurRadius: 5,
-                            spreadRadius: 2,
-                          )
-                        ]),
-                    child: const Icon(
-                      Icons.arrow_back,
-                      size: 18,
-                    ),
-                  ),
-                ))
-            : const SizedBox(),
-        SizedBox(
-          height: 250,
+        Container(
+          height: 200,
+          decoration: BoxDecoration(
+            color: theme.colorScheme.primaryContainer,
+            borderRadius:
+                const BorderRadius.vertical(bottom: Radius.circular(30)),
+          ),
           width: double.infinity,
           child: Padding(
             padding: const EdgeInsets.all(20),
@@ -68,8 +44,40 @@ class BannerWidget extends StatelessWidget {
                   ),
                 ]),
           ),
-        )
+        ),
+
+        //   Back button
+        hasBacNavigator ? buildBackButton(context) : const SizedBox(),
       ],
     );
+  }
+
+  Positioned buildBackButton(BuildContext context) {
+    return Positioned(
+        top: 40,
+        left: 30,
+        child: InkWell(
+          onTap: () => Navigator.pop(context),
+          child: Container(
+            height: 30,
+            width: 30,
+            decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.primaryContainer,
+                borderRadius: BorderRadius.circular(8),
+                boxShadow: [
+                  BoxShadow(
+                    color:
+                        Theme.of(context).colorScheme.shadow.withOpacity(0.2),
+                    offset: const Offset(0, 2),
+                    blurRadius: 5,
+                  )
+                ]),
+            child: Icon(
+              Icons.arrow_back,
+              size: 18,
+              color: Theme.of(context).colorScheme.onPrimaryContainer,
+            ),
+          ),
+        ));
   }
 }
