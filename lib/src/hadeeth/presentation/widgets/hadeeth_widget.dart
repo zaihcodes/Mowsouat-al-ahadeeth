@@ -9,83 +9,100 @@ class HadeethWidget extends StatelessWidget {
   final Hadeeth hadeeth;
   @override
   Widget build(BuildContext context) {
-    return Stack(
+    final theme = Theme.of(context);
+    return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.all(15),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                const SizedBox(
-                  height: 100,
-                ),
-                HadeethHadeeth(hadeeth: hadeeth.hadeeth),
-                const SizedBox(
-                  height: 30,
-                ),
-                // Explination
-                Text(
-                  'الشرح',
-                  textDirection: TextDirection.rtl,
-                  style: GoogleFonts.almarai(),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  hadeeth.explanation,
-                  textDirection: TextDirection.rtl,
-                  style: GoogleFonts.changa(),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                // Word meaning
-                Text(
-                  'معاني الكلمات',
-                  textDirection: TextDirection.rtl,
-                  style: GoogleFonts.almarai(),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                WordsMeaningWidget(wordsMeanings: hadeeth.wordsMeanings)
-              ],
+        Container(
+          padding: EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            color: theme.colorScheme.primaryContainer,
+            borderRadius:
+                const BorderRadius.vertical(bottom: Radius.circular(30)),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 20),
+              buildBackIconButton(context),
+              const SizedBox(
+                height: 40,
+              ),
+              HadeethHadeeth(hadeeth: hadeeth.hadeeth),
+            ],
+          ),
+        ),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(15),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  // Explination
+                  buildTitle(title: 'الشرح'),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    hadeeth.explanation,
+                    textDirection: TextDirection.rtl,
+                    style: GoogleFonts.changa(),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  // Word meaning
+                  buildTitle(
+                    title: 'معاني الكلمات',
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  WordsMeaningWidget(wordsMeanings: hadeeth.wordsMeanings)
+                ],
+              ),
             ),
           ),
         ),
-
-        // NAvigate back
-        Positioned(
-            top: 40,
-            left: 30,
-            child: InkWell(
-              onTap: () => Navigator.pop(context),
-              child: Container(
-                height: 30,
-                width: 30,
-                decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.primaryContainer,
-                    borderRadius: BorderRadius.circular(8),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Theme.of(context)
-                            .colorScheme
-                            .shadow
-                            .withOpacity(0.2),
-                        offset: const Offset(0, 2),
-                        blurRadius: 5,
-                      )
-                    ]),
-                child: Icon(
-                  Icons.arrow_back,
-                  size: 18,
-                  color: Theme.of(context).colorScheme.onPrimaryContainer,
-                ),
-              ),
-            )),
       ],
+    );
+  }
+
+  Text buildTitle({required String title}) {
+    return Text(
+      title,
+      textDirection: TextDirection.rtl,
+      style: GoogleFonts.almarai().copyWith(
+        fontSize: 18,
+      ),
+    );
+  }
+
+  InkWell buildBackIconButton(BuildContext context) {
+    return InkWell(
+      onTap: () => Navigator.pop(context),
+      child: Container(
+        height: 30,
+        width: 30,
+        decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.primaryContainer,
+            borderRadius: BorderRadius.circular(8),
+            boxShadow: [
+              BoxShadow(
+                color: Theme.of(context).colorScheme.shadow.withOpacity(0.2),
+                offset: const Offset(0, 2),
+                blurRadius: 5,
+              )
+            ]),
+        child: Icon(
+          Icons.arrow_back,
+          size: 18,
+          color: Theme.of(context).colorScheme.onPrimaryContainer,
+        ),
+      ),
     );
   }
 }

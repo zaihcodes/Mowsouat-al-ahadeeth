@@ -40,7 +40,7 @@ class BannerWidget extends StatelessWidget {
                   Text(
                     title,
                     style: GoogleFonts.almarai().copyWith(
-                        fontSize: 35, overflow: TextOverflow.ellipsis),
+                        fontSize: 30, overflow: TextOverflow.ellipsis),
                   ),
                 ]),
           ),
