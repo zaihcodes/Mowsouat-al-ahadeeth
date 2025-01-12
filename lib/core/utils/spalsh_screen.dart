@@ -2,9 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hadeeth/core/constants/constants.dart';
+import 'package:hadeeth/core/services/storage.dart';
 import 'package:hadeeth/src/category/presentation/blocs/category/category_bloc.dart';
 import 'package:hadeeth/src/category/presentation/screens/categories_screen.dart';
-import 'package:hadeeth/core/dependecies/injection_container.dart' as di;
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -15,6 +16,18 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   @override
+  initState() {
+    super.initState();
+
+    if (StorageService.getAppFirstOpen()) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const CategoriesScreen()),
+      );
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     // Add a delay to simulate loading time
     Future.delayed(const Duration(seconds: 2), () {
@@ -23,6 +36,7 @@ class _SplashScreenState extends State<SplashScreen> {
       //   context,
       //   MaterialPageRoute(builder: (context) => const CategoriesScreen()),
       // );
+      StorageService.setAppFirstOpen(true);
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const CategoriesScreen()),
