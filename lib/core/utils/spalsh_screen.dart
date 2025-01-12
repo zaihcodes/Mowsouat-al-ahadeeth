@@ -19,7 +19,11 @@ class _SplashScreenState extends State<SplashScreen> {
     // Add a delay to simulate loading time
     Future.delayed(const Duration(seconds: 2), () {
       context.read<CategoryBloc>().add(GetAllCategories(lang: 'ar'));
-      Navigator.push(
+      // Navigator.push(
+      //   context,
+      //   MaterialPageRoute(builder: (context) => const CategoriesScreen()),
+      // );
+      Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const CategoriesScreen()),
       );

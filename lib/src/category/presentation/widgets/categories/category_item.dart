@@ -27,63 +27,45 @@ class CategoryItem extends StatelessWidget {
                       categoryTitle: category.title,
                     )));
       },
-      child: Container(
-        padding: const EdgeInsets.all(20),
-        margin: const EdgeInsets.only(bottom: 10),
-        decoration: BoxDecoration(
-          // color: Theme.of(context).colorScheme.primaryFixedDim,
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(
-            width: 2,
-            color: Theme.of(context).colorScheme.primaryFixedDim,
-          ),
+      child: Card(
+        color: Theme.of(context).colorScheme.secondaryContainer,
+        elevation: 4,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
         ),
-        child: Row(
-          children: [
-            Container(
-              width: 60,
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.primaryContainer,
-                borderRadius: BorderRadius.circular(8),
-                boxShadow: [
-                  BoxShadow(
-                      color:
-                          Theme.of(context).colorScheme.shadow.withOpacity(0.1),
-                      // spreadRadius: 3,
-                      blurRadius: 3,
-                      offset: const Offset(0, 2))
-                ],
+        margin: const EdgeInsets.symmetric(vertical: 8),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Row(
+            children: [
+              Expanded(
+                child: Text(
+                  category.title,
+                  textAlign: TextAlign.end,
+                  style: GoogleFonts.changa(
+                      color: Theme.of(context).colorScheme.onSecondaryContainer,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600),
+                ),
               ),
-              child: Center(
-                child: Text(category.hadeethsCount),
-              ),
-            ),
-            Expanded(
-              child: Text(
-                category.title,
-                textAlign: TextAlign.end,
-                style: GoogleFonts.changa(),
-              ),
-            ),
-            const SizedBox(
-              width: 50,
-            ),
-            Container(
+              const SizedBox(width: 16),
+              Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(
-                      color: Theme.of(context).colorScheme.primaryContainer,
-                      width: 1),
+                    color: Theme.of(context).colorScheme.primaryContainer,
+                    width: 1,
+                  ),
                 ),
                 child: const Icon(
                   Icons.arrow_forward,
-                  size: 14,
-                )),
-          ],
+                  size: 16,
+                ),
+              ),
+            ],
+          ),
         ),
-        // Add more category information as needed
       ),
     );
   }

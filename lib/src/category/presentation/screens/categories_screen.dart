@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hadeeth/core/utils/no_internet_screen.dart';
 import 'package:hadeeth/core/utils/widgets/banner_widget.dart';
 import 'package:hadeeth/src/category/presentation/blocs/category/category_bloc.dart';
@@ -13,6 +14,22 @@ class CategoriesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.surface,
+        elevation: 0,
+        scrolledUnderElevation: 0,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Text(
+              'موسوعة',
+              style: GoogleFonts.changa(
+                color: Theme.of(context).colorScheme.onSurface,
+              ),
+            ),
+          ],
+        ),
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
@@ -26,7 +43,7 @@ class CategoriesScreen extends StatelessWidget {
                       BorderRadius.vertical(top: Radius.circular(40))),
               child: BlocBuilder<CategoryBloc, CategoryState>(
                 builder: (context, state) {
-                  debugPrint('State is ${state.runtimeType}');
+                  // debugPrint('State is ${state.runtimeType}');
                   if (state is CategoryLoading) {
                     return const SizedBox(
                         child: Center(child: CircularProgressIndicator()));

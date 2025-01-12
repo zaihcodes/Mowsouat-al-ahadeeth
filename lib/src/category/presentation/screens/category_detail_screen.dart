@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hadeeth/core/utils/no_internet_screen.dart';
 import 'package:hadeeth/core/utils/widgets/banner_widget.dart';
 import 'package:hadeeth/src/category/presentation/blocs/category_detail/category_detail_bloc.dart';
@@ -16,21 +17,37 @@ class CategoryDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.surface,
+        elevation: 0,
+        scrolledUnderElevation: 0,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Text(
+              'الأحاديث النبوية',
+              style: GoogleFonts.changa(
+                color: Theme.of(context).colorScheme.onSurface,
+              ),
+            ),
+          ],
+        ),
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           BannerWidget(
             title: categoryTitle,
             subTitl: 'الأحاديث النبوية',
-            hasBacNavigator: true,
+            hasBacNavigator: false,
           ),
           Expanded(
             child: Container(
               padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   // color: Theme.of(context).colorScheme.secondaryContainer,
                   borderRadius:
-                      const BorderRadius.vertical(top: Radius.circular(40))),
+                      BorderRadius.vertical(top: Radius.circular(40))),
               child: BlocBuilder<CategoryDetailBloc, CategoryDetailState>(
                 builder: (context, state) {
                   if (state is CategoryDetailLoading) {
