@@ -12,4 +12,4 @@ Clean Architecture: Adheres to a clean architecture by organizing code into thre
 API Integration: Communicates with the https://hadeethenc.com/api/v1 API to retrieve and display data. You can easily replace this API with your own or any other API of your choice.
 
 ## Screenshots
-![my screenshot](./screenshots/Screenshot.png)
+<img src="./screenshots/Screenshot_1.jpg" height="600em" /> <img src="./screenshots/Screenshot_2.jpg" height="600em" /> <img src="./screenshots/Screenshot_3.jpg" height="600em" />
